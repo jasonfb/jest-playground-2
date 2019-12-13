@@ -29,15 +29,19 @@ class AbcContainer extends React.Component {
 
   componentDidMount() {
     setTimeout(() => {
-      console.log("this.def_thing_ref= ", this.def_thing_ref)
-      let rect = this.def_thing_ref.current.getBoundingClientRect()
-      console.log("the obejct's rect is ", rect)
-      this.setState({visible: true,
+      console.log("componentDidMount... this.def_thing_ref= ", this.def_thing_ref)
+
+      if (this.def_thing_ref.current) {
+        let rect = this.def_thing_ref.current.getBoundingClientRect()
+        console.log("the obejct's rect is ", rect)
+        this.setState({
+          visible: true,
           message: "the position of the box is " + rect.x + "," + rect.y +
-          "I know this because the ref for this.def_thing_ref.current is populated"
-      })
-
-
+            "I know this because the ref for this.def_thing_ref.current is populated"
+        })
+      } else {
+        console.log("..... no current object")
+        }
     }, 2500)
   }
 
