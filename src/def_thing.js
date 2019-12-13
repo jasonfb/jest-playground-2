@@ -11,8 +11,6 @@ const StyledDefThing = styled.div`
   border: solid 1px green;
   display: block;
 `
-
-
 class DefThing extends React.Component {
   render () {
     const {selfRef, visible} = this.props
@@ -23,8 +21,6 @@ class DefThing extends React.Component {
     )
   }
 }
-
-
 
 export default React.forwardRef((props, ref) => <DefThing {...props} selfRef={ref}  />)
 

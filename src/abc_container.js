@@ -20,37 +20,41 @@ class AbcContainer extends React.Component {
   constructor(props) {
     super()
     this.def_thing_ref = React.createRef()
+    this.abc_ref = React.createRef()
     this.state = {
       visible: false,
       message: "wait for it..."
     }
 
+    console.log("constructor.....")
+
   }
 
   componentDidMount() {
     setTimeout(() => {
-      console.log("componentDidMount... this.def_thing_ref= ", this.def_thing_ref)
-
+      console.log("TIMEOUT componentDidMount... this= ", this)
       if (this.def_thing_ref.current) {
         let rect = this.def_thing_ref.current.getBoundingClientRect()
         console.log("the obejct's rect is ", rect)
         this.setState({
           visible: true,
           message: "the position of the box is " + rect.x + "," + rect.y +
-            "I know this because the ref for this.def_thing_ref.current is populated"
+            "....I know this because the ref for this.def_thing_ref.current is populated"
         })
       } else {
-        console.log("..... no current object")
-        }
+        console.log(".....***** no current ref object********************")
+      }
     }, 2500)
   }
 
 
   render() {
+    console.log("render.....")
+
     const {visible, message} = this.state
 
     return (
-      <StyledAbcContainer data-testid="abc-container">
+      <StyledAbcContainer ref={this.abc_ref} data-testid="abc-container">
         StyledAbcContainer
         <DefThing ref={this.def_thing_ref} visible={visible}/>
 
